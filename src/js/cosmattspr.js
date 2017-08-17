@@ -32,8 +32,8 @@
 
 define([
     'css!../css/cosmattspr.css', //Custom styles of the engine (applied over bootstrap & front-end-core)
-    '../libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
     '../libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
+    '../libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
     '../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js'
   ], //Required by Rivets
   function(cosmattsprTemplateRef) {

@@ -48,7 +48,7 @@
       if (settings.assessmentMode && settings.assessmentCallback) {
         settings.assessmentCallback({
           "configData": {
-            "value": JSON.stringify(settings.config),
+            "value": JSON.stringify(Leonardo.scripts.getData($leonardoPlugin[0])),
             "unit": ""
           }
         });
@@ -57,13 +57,16 @@
 
 
     var updateSheet = function (params) {
-
-     
+      Leonardo.scripts.updateData($leonardoPlugin[0], JSON.parse(params.configData.value));
     }
 
     var markAnswers = function (params) {
       Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
     }
+
+    setInterval(function(){
+      assessmentNotifier();
+    }, 3000);
 
     return {
       ref: this,
