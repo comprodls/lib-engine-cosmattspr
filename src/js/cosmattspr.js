@@ -32,8 +32,8 @@
 
 define([
     'css!../css/cosmattspr.css', //Custom styles of the engine (applied over bootstrap & front-end-core)
-    '../libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
-    '../libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/49416926/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/49416926/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
     '../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js'
   ], //Required by Rivets
   function(cosmattsprTemplateRef) {
@@ -159,7 +159,7 @@ define([
 
         //add callback function to appData
         __content.appData.options.data.assessmentCallback = userResponseHandler;
-        __pluginInstance = $pluginArea.TSCurve(__content.appData.options.data);
+        __pluginInstance = $pluginArea.spreadsheetLeonardo(__content.appData.options.data);
 
         $questionContainer.append($questionArea);
         $questionContainer.append($pluginArea);
