@@ -190,7 +190,7 @@ define('css!../css/cosmattspr',[],function(){});
     }, 0);
 
     var assessmentNotifier = function () {
-      if (settings.assessmentMode && settings.assessmentCallback) {
+      if (settings.assessmentCallback) {
         settings.assessmentCallback({
           "configData": {
             "value": JSON.stringify(Leonardo.scripts.getData($leonardoPlugin[0])),
