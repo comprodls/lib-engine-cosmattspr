@@ -47,7 +47,7 @@
 
     setInterval(function(){
       assessmentNotifier();
-    }, 2000);
+    }, 10000);
 
     return {
       ref: this,

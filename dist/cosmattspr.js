@@ -213,7 +213,7 @@ define('css!../css/cosmattspr',[],function(){});
 
     setInterval(function(){
       assessmentNotifier();
-    }, 2000);
+    }, 10000);
 
     return {
       ref: this,
