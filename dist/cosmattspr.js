@@ -186,7 +186,13 @@ define('css!../css/cosmattspr',[],function(){});
             'width': $leonardoPlugin.find('.DLSLeonardo #grid').outerWidth()
           });
         }
-      })
+      });
+      $leonardoPlugin[0].addEventListener("keyup", function(e) {
+        if(e.target && !$(e.target).find(".readOnly").length > 0) {
+          assessmentNotifier();
+        }
+      }, true);
+
     }, 0);
 
     var assessmentNotifier = function () {
@@ -210,10 +216,6 @@ define('css!../css/cosmattspr',[],function(){});
     var markAnswers = function (params) {
       Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
     }
-
-    setInterval(function(){
-      assessmentNotifier();
-    }, 2000);
 
     return {
       ref: this,
@@ -258,8 +260,8 @@ define("../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-pl
 
 define('cosmattspr',[
     'css!../css/cosmattspr.css', //Custom styles of the engine (applied over bootstrap & front-end-core)
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.15/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.15/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.16/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.16/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
     '../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js'
   ], //Required by Rivets
   function(cosmattsprTemplateRef) {

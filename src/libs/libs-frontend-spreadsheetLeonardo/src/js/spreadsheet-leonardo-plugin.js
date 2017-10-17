@@ -20,7 +20,13 @@
             'width': $leonardoPlugin.find('.DLSLeonardo #grid').outerWidth()
           });
         }
-      })
+      });
+      $leonardoPlugin[0].addEventListener("keyup", function(e) {
+        if(e.target && !$(e.target).find(".readOnly").length > 0) {
+          assessmentNotifier();
+        }
+      }, true);
+
     }, 0);
 
     var assessmentNotifier = function () {
@@ -44,10 +50,6 @@
     var markAnswers = function (params) {
       Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
     }
-
-    setInterval(function(){
-      assessmentNotifier();
-    }, 2000);
 
     return {
       ref: this,
