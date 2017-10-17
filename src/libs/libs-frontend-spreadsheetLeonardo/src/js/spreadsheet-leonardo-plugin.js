@@ -22,12 +22,11 @@
         }
       });
       $leonardoPlugin[0].addEventListener("keyup", function(e) {
-        if(e.target && !$(e.target).find(".readOnly").length > 0) {
-          assessmentNotifier();
-        }
+        assessmentNotifier();
+        // if(e.target && $(e.target).find(".readOnly").length === 0) {
+        //   assessmentNotifier();
+        // }
       }, true);
-      // invoke once on each load to notify test runner of initial state 
-      assessmentNotifier();
     }, 0);
 
     var assessmentNotifier = function () {
