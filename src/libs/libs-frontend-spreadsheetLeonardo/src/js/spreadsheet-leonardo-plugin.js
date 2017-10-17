@@ -26,7 +26,8 @@
           assessmentNotifier();
         }
       }, true);
-
+      // invoke once on each load to notify test runner of initial state 
+      assessmentNotifier();
     }, 0);
 
     var assessmentNotifier = function () {
