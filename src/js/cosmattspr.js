@@ -740,6 +740,14 @@ define([
         };
       }
 
+      function __resetAnswers() {
+        __pluginInstance.resetAnswers()
+      }
+
+      function __clearGrades() {
+        __pluginInstance.clearGrades()
+      }
+
       return {
         /*Engine-Shell Interface*/
         "init": init,
@@ -751,8 +759,8 @@ define([
         "handleSubmit": handleSubmit,
         "showGrades": showGrades,
         "updateLastSavedResults": updateLastSavedResults,
-        "resetAnswers":__pluginInstance.resetAnswers(),
-        "clearGrades":__pluginInstance.clearGrades()
+        "resetAnswers":__resetAnswers,
+        "clearGrades": __clearGrades
       };
     };
   });
