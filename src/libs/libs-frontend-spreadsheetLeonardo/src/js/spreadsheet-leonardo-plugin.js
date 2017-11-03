@@ -51,10 +51,19 @@
       Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
     }
 
+    var resetAnswers = function (params) {
+      Leonardo.scripts.reset($leonardoPlugin[0]);
+    }
+
+    var clearGrades = function (params) {
+      Leonardo.scripts.tryAgain($leonardoPlugin[0]);
+    }
     return {
       ref: this,
       updateSheet: updateSheet,
-      markAnswers: markAnswers
+      markAnswers: markAnswers,
+      resetAnswers: resetAnswers,
+      clearGrades: clearGrades
     };
   };
 }(jQuery));
