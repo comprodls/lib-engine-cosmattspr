@@ -23,9 +23,9 @@
       });
       $leonardoPlugin[0].addEventListener("keyup", function(e) {
         assessmentNotifier();
-        // if(e.target && $(e.target).find(".readOnly").length === 0) {
-        //   assessmentNotifier();
-        // }
+      }, true);
+      $leonardoPlugin[0].addEventListener("mouseup", function(e) {
+        assessmentNotifier();
       }, true);
     }, 0);
 
