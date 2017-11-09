@@ -269,8 +269,8 @@ define("../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-pl
 
 define('cosmattspr',[
     'css!../css/cosmattspr.css', //Custom styles of the engine (applied over bootstrap & front-end-core)
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.21/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.21/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.22/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.22/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
     '../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js'
   ], //Required by Rivets
   function(cosmattsprTemplateRef) {
