@@ -164,76 +164,150 @@ define('css',[],function() {
 
 
 define('css!../css/cosmattspr',[],function(){});
+var Cosmatt=function(t){function i(n){if(e[n])return e[n].exports;var r=e[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,i),r.l=!0,r.exports}var e={};return i.m=t,i.c=e,i.d=function(t,e,n){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,i){return Object.prototype.hasOwnProperty.call(t,i)},i.p="",i(i.s=0)}([function(t,i,e){"use strict";Object.defineProperty(i,"__esModule",{value:!0});var n=3,r=6,o=-4,s=function(){function t(t){this.superscripts={0:"⁰",1:"¹",2:"²",3:"³",4:"⁴",5:"⁵",6:"⁶",7:"⁷",8:"⁸",9:"⁹","-":"⁻"},this.options={},t||(t={}),this.options.significantDigits=t.significantDigits||n,this.options.maxPositiveExponent=t.maxPositiveExponent||r,this.options.minNegativeExponent=t.minNegativeExponent||o}return t.prototype.format=function(t){var i=parseFloat(t);if(Number.isNaN(i))return t;if(Number.isInteger(i)){if(Math.abs(i)>=Math.pow(10,this.options.maxPositiveExponent)){var e=i.toExponential(this.options.significantDigits-1);return this.toSuperscript(e)}return i.toString()}if(Math.abs(i)>=Math.pow(10,this.options.maxPositiveExponent)){var n=i.toPrecision(this.options.significantDigits);return this.toSuperscript(n)}if(Math.abs(i)>1)return this.removeTrailingZeroesAfterDecimal(i.toFixed(this.options.significantDigits));if(Math.abs(i)<1&&Math.abs(i)>=Math.pow(10,this.options.minNegativeExponent)){var r=Math.abs(this.options.minNegativeExponent)+this.options.significantDigits-1;return this.removeTrailingZeroesAfterDecimal(i.toFixed(r))}var o=i.toExponential(this.options.significantDigits-1);return this.toSuperscript(o)},t.prototype.toSuperscript=function(t){var i;if(t.includes("e+"))i=t.split("e+");else{if(!t.includes("e-"))return t;i=t.split("e")}for(var e="",n=0,r=i[1];n<r.length;n++){var o=r[n];e+=this.superscripts[o]}return i[1]=e,i.join("x10")},t.prototype.removeTrailingZeroesAfterDecimal=function(t){return parseFloat(t).toString()},t}();i.NumberFormatter=s}]);
+define("../libs/number-formatter/dist/cosmatt-number-formatter.js", function(){});
+
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+
+//import { NumberFormatter } from "../../../number-formatter/src/NumberFormatter/NumberFormatter";
+//import { INumberFormatterOptions } from "../../../number-formatter/src/NumberFormatter/INumberFormatterOptions";
 (function ($) {
-  $.fn.spreadsheetLeonardo = function (options) {
-    var settings = $.extend({}, options);
-    var self = this;
-    self.append('<div class="leonardo-plugin"></div>');
-    var $leonardoPlugin = this.find('.leonardo-plugin');
-    if (settings.style != undefined) {
-      //$leonardoPlugin.css("width",'inherit' );
-      $leonardoPlugin.css("height", settings.style.height);
-      $leonardoPlugin.css("text-align", 'center');
-    }
-
-
-    setTimeout(function () {
-      Leonardo.scripts.add($leonardoPlugin[0], settings.config, settings.correctData);
-      $leonardoPlugin.on('resize', function () {
-        var $btnContainer = self.find(".btn-container");
-        if ($btnContainer.length) {
-          $btnContainer.css({
-            'width': $leonardoPlugin.find('.DLSLeonardo #grid').outerWidth()
-          });
+    $.fn.spreadsheetLeonardo = function (options) {
+        var settings = $.extend({}, options);
+        var self = this;
+        self.append('<div class="leonardo-plugin"></div>');
+        var $leonardoPlugin = this.find('.leonardo-plugin');
+        if (settings.style != undefined) {
+            //$leonardoPlugin.css("width",'inherit' );
+            $leonardoPlugin.css("height", settings.style.height);
+            $leonardoPlugin.css("text-align", 'center');
         }
-      });
-      $leonardoPlugin[0].addEventListener("keyup", function(e) {
-        assessmentNotifier();
-      }, true);
-      $leonardoPlugin[0].addEventListener("mouseup", function(e) {
-        assessmentNotifier();
-      }, true);
-    }, 0);
-
-    var assessmentNotifier = function () {
-      if (settings.assessmentCallback) {
-        settings.assessmentCallback({
-          "configData": {
-            "value": JSON.stringify(Leonardo.scripts.getData($leonardoPlugin[0])),
-            "unit": ""
-          }
-        });
-      }
-    }
-
-
-    var updateSheet = function (params) {
-      if(params && params.configData) {
-        Leonardo.scripts.updateData($leonardoPlugin[0], JSON.parse(params.configData.value));
-      }
-    }
-
-    var markAnswers = function (params) {
-      Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
-    }
-
-    var resetAnswers = function (params) {
-      Leonardo.scripts.reset($leonardoPlugin[0]);
-    }
-
-    var clearGrades = function (params) {
-      Leonardo.scripts.tryAgain($leonardoPlugin[0]);
-    }
-    return {
-      ref: this,
-      updateSheet: updateSheet,
-      markAnswers: markAnswers,
-      resetAnswers: resetAnswers,
-      clearGrades: clearGrades
+        var numberFormatter = new Cosmatt.NumberFormatter(settings.numberFormatterOptions || {});
+        var eventHandlers = { beforeValueRender: numberFormatter.format.bind(numberFormatter) };
+        window.setTimeout(function () {
+            Leonardo.scripts.add($leonardoPlugin[0], settings.config, settings.correctData, eventHandlers);
+            $leonardoPlugin.on('resize', function () {
+                var $btnContainer = self.find(".btn-container");
+                if ($btnContainer.length) {
+                    $btnContainer.css({
+                        'width': $leonardoPlugin.find('.DLSLeonardo #grid').outerWidth()
+                    });
+                }
+            });
+            $leonardoPlugin[0].addEventListener("keyup", function (e) {
+                assessmentNotifier();
+            }, true);
+            $leonardoPlugin[0].addEventListener("mouseup", function (e) {
+                assessmentNotifier();
+            }, true);
+        }, 0);
+        var assessmentNotifier = function () {
+            if (settings.assessmentCallback) {
+                settings.assessmentCallback({
+                    "configData": {
+                        "value": JSON.stringify(Leonardo.scripts.getData($leonardoPlugin[0])),
+                        "unit": ""
+                    }
+                });
+            }
+        };
+        var updateSheet = function (params) {
+            if (params && params.configData) {
+                Leonardo.scripts.updateData($leonardoPlugin[0], JSON.parse(params.configData.value));
+            }
+        };
+        var markAnswers = function (params) {
+            Leonardo.scripts.checkAnswer($leonardoPlugin[0], settings.correctData);
+        };
+        var resetAnswers = function (params) {
+            Leonardo.scripts.reset($leonardoPlugin[0]);
+        };
+        var clearGrades = function (params) {
+            Leonardo.scripts.tryAgain($leonardoPlugin[0]);
+        };
+        return {
+            ref: this,
+            updateSheet: updateSheet,
+            markAnswers: markAnswers,
+            resetAnswers: resetAnswers,
+            clearGrades: clearGrades
+        };
     };
-  };
 }(jQuery));
-define("../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js", function(){});
+
+
+/***/ })
+/******/ ]);
+define("../libs/libs-frontend-spreadsheetLeonardo/dist/spreadsheet-jquery-plugin.js", function(){});
 
 /*
  * -------------
@@ -269,9 +343,10 @@ define("../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-pl
 
 define('cosmattspr',[
     'css!../css/cosmattspr.css', //Custom styles of the engine (applied over bootstrap & front-end-core)
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.22/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/scripts.bundle.js',
-    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.22/src/libs/libs-frontend-spreadsheetLeonardo/src/js/vendor/styles.bundle.js',
-    '../libs/libs-frontend-spreadsheetLeonardo/src/js/spreadsheet-leonardo-plugin.js'
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.23/src/libs/libs-frontend-spreadsheetLeonardo/dist/scripts.bundle.js',
+    'https://cdn.rawgit.com/comprodls/lib-engine-cosmattspr/v1.0.23/src/libs/libs-frontend-spreadsheetLeonardo/dist/styles.bundle.js',
+    '../libs/number-formatter/dist/cosmatt-number-formatter.js',
+    '../libs/libs-frontend-spreadsheetLeonardo/dist/spreadsheet-jquery-plugin.js'
   ], //Required by Rivets
   function(cosmattsprTemplateRef) {
 
