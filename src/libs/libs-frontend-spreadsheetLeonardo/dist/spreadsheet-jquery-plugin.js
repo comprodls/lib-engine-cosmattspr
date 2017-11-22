@@ -82,8 +82,11 @@
             $leonardoPlugin.css("height", settings.style.height);
             $leonardoPlugin.css("text-align", 'center');
         }
+        var valueRenderer = function (input) {
+            return numberFormatter.format(input, true);
+        };
         var numberFormatter = new Cosmatt.NumberFormatter(settings.numberFormatterOptions || {});
-        var eventHandlers = { beforeValueRender: numberFormatter.format.bind(numberFormatter) };
+        var eventHandlers = { beforeValueRender: valueRenderer };
         window.setTimeout(function () {
             Leonardo.scripts.add($leonardoPlugin[0], settings.config, settings.correctData, eventHandlers);
             $leonardoPlugin.on('resize', function () {
