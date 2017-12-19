@@ -17,6 +17,7 @@
  *
  *******************************************************/
 
+@import '../libs/libs-frontend-spreadsheetLeonardo/dist/leonardoPlayer.min.css';
 .cosmattspr-engine .DLSLeonardo .handsontableInput {
     box-shadow: 0 0 0 2px #217346 inset !important;
 }
