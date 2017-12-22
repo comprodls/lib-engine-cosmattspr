@@ -157,7 +157,7 @@ define([
           //add callback function to appData
           var callbacks = {onChange: userResponseHandler};
             
-          var uiStyle = {widgetStyles: '{"box-shadow": "6px 6px 9px #ddd", "border": "1px solid #ddd"}',horizontalAlignment: "center"};
+          var uiStyle = {widgetStyles: '{"box-shadow": "6px 6px 9px #ddd", "border": "1px solid #ddd"}',horizontalAlignment: "center", "height": "expand"};
           // $("#spreadsheet").spreadsheetLeonardo("WB1", "Question", {config:newLeoConfig, events:callbacks, uiStyle:uiStyle});
           
           __pluginInstance = $pluginArea.addLeonardoWidget("WB1", {config:__content.appData.options.data, events:callbacks, uiStyle:uiStyle});
