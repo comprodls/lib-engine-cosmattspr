@@ -155,7 +155,10 @@ define([
           $questionArea.html(__content.questionText);
       
           //add callback function to appData
-          var callbacks = {change: userResponseHandler};
+          var callbacks = {
+            change: userResponseHandler,
+            beforeCellRender: textFormatHandler
+          };
             
           var uiStyle = {widgetStyles: '{"box-shadow": "6px 6px 9px #ddd", "border": "1px solid #ddd"}',horizontalAlignment: "center", "height": "expand"};
           // $("#spreadsheet").spreadsheetLeonardo("WB1", "Question", {config:newLeoConfig, events:callbacks, uiStyle:uiStyle});
@@ -185,6 +188,10 @@ define([
         function getConfig() {
           return __config;
         }
+
+      function textFormatHandler(celldata){
+        console.log("textFormatHandler: ",celldata);
+      }
       
         function userResponseHandler(range, data) {
 
@@ -273,32 +280,35 @@ define([
          * Function to display last result saved in LMS.
          */
         function updateLastSavedResults(lastResults) {
-          var updatePluginVals = {};
-          $.each(lastResults.interactions, function (num, value) {
-            var interactionMinScore = __content.score.min;
-            var optionsCount = Object.keys(__content.optionsJSON).length;
-            var interactionMaxScore = __content.score.max / optionsCount;
-      
-            var interactionId = value.id;
-      
-            __content.userAnswersJSON[interactionId] = {};
-            __content.userAnswersJSON[interactionId].answer = value.answer.toString();
-            __content.userAnswersJSON[interactionId].correctanswer = __content.answersJSON[interactionId].correct.toString();
-            __content.userAnswersJSON[interactionId].maxscore = interactionMaxScore;
-      
-            if (Math.round(parseFloat(value.answer) * 100) / 100 == parseFloat(__content.answersJSON[interactionId].correct)) {
-              __content.userAnswersJSON[interactionId].score = interactionMaxScore;
-              __content.userAnswersJSON[interactionId].status = 'correct';
-            } else {
-              __content.userAnswersJSON[interactionId].score = interactionMinScore;
-              __content.userAnswersJSON[interactionId].status = 'incorrect';
-            }
-            updatePluginVals[__content.optionsJSON[value.id].type] = {
-              value: value.answer
-            };
-            if (value.unit) updatePluginVals[__content.optionsJSON[value.id].type].unit = value.unit;
-          });
-          __pluginInstance.setState(JSON.parse(updatePluginVals.configData.value));
+          if(lastResults.interactions && lastResults.interactions.length > 0)
+          {
+            var updatePluginVals = {};
+            $.each(lastResults.interactions, function (num, value) {
+              var interactionMinScore = __content.score.min;
+              var optionsCount = Object.keys(__content.optionsJSON).length;
+              var interactionMaxScore = __content.score.max / optionsCount;
+
+              var interactionId = value.id;
+
+              __content.userAnswersJSON[interactionId] = {};
+              __content.userAnswersJSON[interactionId].answer = value.answer.toString();
+              __content.userAnswersJSON[interactionId].correctanswer = __content.answersJSON[interactionId].correct.toString();
+              __content.userAnswersJSON[interactionId].maxscore = interactionMaxScore;
+
+              if (Math.round(parseFloat(value.answer) * 100) / 100 == parseFloat(__content.answersJSON[interactionId].correct)) {
+                __content.userAnswersJSON[interactionId].score = interactionMaxScore;
+                __content.userAnswersJSON[interactionId].status = 'correct';
+              } else {
+                __content.userAnswersJSON[interactionId].score = interactionMinScore;
+                __content.userAnswersJSON[interactionId].status = 'incorrect';
+              }
+              updatePluginVals[__content.optionsJSON[value.id].type] = {
+                value: value.answer
+              };
+              if (value.unit) updatePluginVals[__content.optionsJSON[value.id].type].unit = value.unit;
+            });
+            __pluginInstance.setState(JSON.parse(updatePluginVals.configData.value));
+          }
       
         }
         /* ---------------------- PUBLIC FUNCTIONS END ----------------------------*/
