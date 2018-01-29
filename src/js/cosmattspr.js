@@ -121,7 +121,7 @@ define([
         };
       
         var __pluginInstance;
-      
+
         /********************************************************/
         /*                  ENGINE-SHELL INIT FUNCTION
             
@@ -150,7 +150,7 @@ define([
           /* ------ VALIDATION BLOCK END -------- */
           var $questionContainer = $('<div class="row cosmattspr-engine"></div>');
           var $questionArea = $('<p class="col-sm-12 text-primary question-text"></p>');
-          var $pluginArea = $('<div class="col-sm-12" style="height:400px"></div>');
+          var $pluginArea = $('<div class="col-sm-12" ></div>');
       
           $questionArea.html(__content.questionText);
       
@@ -160,9 +160,35 @@ define([
             beforeCellRender: textFormatHandler
           };
             
-          var uiStyle = {widgetStyles: '{"box-shadow": "6px 6px 9px #ddd", "border": "1px solid #ddd"}',horizontalAlignment: "center", "height": "expand"};
+          var uiStyle = {};
           // $("#spreadsheet").spreadsheetLeonardo("WB1", "Question", {config:newLeoConfig, events:callbacks, uiStyle:uiStyle});
-          
+
+          if(params.renderOverrides){
+            // Add callback for numberFormatter
+            if(params.renderOverrides.numberFormatter){
+              callbacks.beforeCellRender = params.renderOverrides.numberFormatter;
+            }
+
+            if(params.renderOverrides.widgetStyles){
+              uiStyle.widgetStyles = params.renderOverrides.widgetStyles;
+            }
+            if(params.renderOverrides.horizontalAlignment){
+              uiStyle.horizontalAlignment = params.renderOverrides.horizontalAlignment;
+            }
+
+            if(params.renderOverrides.height){
+
+              var height = params.renderOverrides.height;
+
+              // If numeric height is passed, apply it to plugin area
+              if(isNaN(height)){
+                uiStyle.height = height;
+              }else {
+                $pluginArea.css("height", height);
+              }
+            }
+          }
+
           __pluginInstance = $pluginArea.addLeonardoWidget("WB1", {config:__content.appData.options.data, events:callbacks, uiStyle:uiStyle});
       
           $questionContainer.append($questionArea);
